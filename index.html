@@ -24,3 +24,86 @@
   <p>Phone: 555-555-1212</p>
 </body>
 </html>
+
+
+
+
+
+<!DOCTYPE html>
+<html>
+  <head>
+    <style>
+      /* Add some styling for the page and canvas element */
+      body {
+        margin: 0;
+        padding: 0;
+      }
+      canvas {
+        display: block;
+        width: 100%;
+        height: 100%;
+      }
+    </style>
+  </head>
+  <body>
+    <!-- Add a canvas element where the graph will be displayed -->
+    <canvas id="graph"></canvas>
+
+    <!-- Add input elements for the equation and range -->
+    <label for="equation">Equation:</label>
+    <input type="text" id="equation" value="x^2">
+    <br>
+    <label for="range">Range:</label>
+    <input type="text" id="range" value="-100,100">
+
+    <!-- Add a script to draw the graph and handle updates -->
+    <script>
+      // Get a reference to the canvas and drawing context
+      const canvas = document.getElementById('graph');
+      const ctx = canvas.getContext('2d');
+
+      // Set up some initial variables and draw the initial graph
+      let equation = document.getElementById('equation').value;
+      let range = document.getElementById('range').value.split(',').map(Number);
+      drawGraph(equation, range);
+
+      // Set up event listeners for the input elements
+      document.getElementById('equation').addEventListener('input', () => {
+        equation = document.getElementById('equation').value;
+        drawGraph(equation, range);
+      });
+      document.getElementById('range').addEventListener('input', () => {
+        range = document.getElementById('range').value.split(',').map(Number);
+        drawGraph(equation, range);
+      });
+
+      // Define a function to draw the graph
+      function drawGraph(equation, range) {
+        // Clear the canvas
+        ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+        // Set up the scale and origin for the graph
+        const xScale = canvas.width / (range[1] - range[0]);
+        const yScale = canvas.height / (range[1] - range[0]);
+        const origin = {
+          x: -range[0] * xScale,
+          y: range[1] * yScale
+        };
+
+        // Set up a function to convert from graph coordinates to canvas coordinates
+        function fromGraphCoord(point) {
+          return {
+            x: point[0] * xScale + origin.x,
+            y: -point[1] * yScale + origin.y
+          };
+        }
+
+        // Parse the equation and get a function for it
+        const fn = math.compile(equation);
+
+        // Set the line style and starting point
+        ctx.strokeStyle = '#000000';
+        ctx.lineWidth = 2;
+        ctx.beginPath();
+        let point = fromGraphCoord([range[0], fn.evaluate({x: range[0]})]);
+        ctx.moveTo(point.x,
