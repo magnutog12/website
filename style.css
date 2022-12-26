@@ -6,7 +6,9 @@
 .banner{
     width: 100%;
     height: 100vh;
-    background-image: linear-gradient(rgba(0,0,0,0.75)), (rgba(0,0,0,0.75)), url(spaceeee.jpg);
-    background-size: cover;
-    background-position: center;
-}	
+body {
+  background-image: url('image.jpg');
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  background-size: cover;
+}
