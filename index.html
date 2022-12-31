@@ -22,7 +22,7 @@
     </header>
     <main>
       <!-- Add a main content area with multiple diverter buttons -->
-      <h1>Welcome to My Website</h1>
+      <h2>Welcome to My Website</h2>
       <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin dignissim mauris nec sapien sollicitudin, at sagittis sem consequat. Nulla facilisi. Nulla facilisi. Aenean at rhoncus massa, sit amet mollis dui. Maecenas ornare, dui in aliquet convallis, arcu est dictum lacus, a tincidunt leo quam id diam. Mauris gravida metus non lacus tempus, ut facilisis ligula dignissim.</p>
       <div class="diverters">
         <button id="diverter-1">Diverter 1</button>
@@ -39,23 +39,6 @@
       <p>Email: info@mywebsite.com</p>
       <p>Phone: 555-555-5555</p>
     </footer>
-    <!-- Add a script to handle the diverter button clicks and update the content -->
-    <script>
-      // Set up event listeners for the diverter buttons
-      document.getElementById('diverter-1').addEventListener('click', () => {
-        updateContent('Content for Diverter 1');
-      });
-      document.getElementById('diverter-2').addEventListener('click', () => {
-        updateContent('Content for Diverter 2');
-      });
-      document.getElementById('diverter-3').addEventListener('click', () => {
-        updateContent('Content for Diverter 3');
-      });
-
-      // Define a function to update the content
-      function updateContent(content) {
-        document.getElementById('diverter-content').innerHTML = content;
-      }
     </script>
   </body>
 </html>
